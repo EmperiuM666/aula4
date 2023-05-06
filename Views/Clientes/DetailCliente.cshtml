@@ -1,0 +1,49 @@
+﻿@model aula4.Models.clientes
+
+@{
+    ViewBag.Title = "DetailCliente";
+}
+
+<h2>DetailCliente</h2>
+
+<div>
+    <h4>clientes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nomecli)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nomecli)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoria)
+        </dd>
+
+        <dt>
+            @if (Model.fotopath == null)
+            {
+                <img src="~/fotos/nofoto.jpg" alt="foto" style="width:120px;" />
+            }
+            else
+            {
+                <img src=@Url.Content("~/fotos/" + Model.fotopath) style="width:120px;" alt="foto" />
+            }
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fotopath)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idcli }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

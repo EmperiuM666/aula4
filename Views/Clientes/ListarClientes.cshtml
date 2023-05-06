@@ -1,0 +1,56 @@
+﻿@model IEnumerable<aula4.Models.clientes>
+
+@{
+    ViewBag.Title = "ListarClientes";
+}
+
+<h2>ListarClientes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nomecli)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categoria)
+        </th>
+        <th>
+            Foto
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomecli)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.categoria)
+        </td>
+        <td>
+            @if (item.fotopath == null)
+            {
+                <img src="~/fotos/nofoto.jpg" alt="foto" style="width:60px;" />
+            }
+            else
+            {
+                <img src=@Url.Content("~/fotos/" + item.fotopath) style="width:60px;" alt="foto" />
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idcli }) |
+            @Html.ActionLink("Details", "DetailCliente", new { id=item.idcli }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idcli })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div style="color:red;">
+    @ViewBag.msg
+</div>
